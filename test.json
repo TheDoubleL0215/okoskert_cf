@@ -1,0 +1,268 @@
+{
+    "project": {
+        "projectStatus": "ongoing",
+        "teamId": "INZ9PH",
+        "updatedAt": "2026-03-11 16:49:14.138000+00:00",
+        "projectDescription": null,
+        "customerEmail": "kisambrus67@yahoomail.com",
+        "projectLocation": "6000 Kecskemét Lánchíd utca 1/A",
+        "projectName": "Privát projekt",
+        "projectType": [
+            "Tókarbantartás"
+        ],
+        "customerName": "Kis Ambrus",
+        "customerPhone": "+3630954123"
+    },
+    "worklog": [
+        {
+            "id": "5PMHD7r0V0QD29QqiaZk",
+            "workspaceId": "S1U18R9lgN79Om9ubs9t",
+            "date": "2026-03-10 23:00:00+00:00",
+            "startTime": "2026-03-11 11:47:00+00:00",
+            "updatedAt": "2026-03-11 16:49:36.874000+00:00",
+            "employeeId": "45V4l6CII5acuksMXScyDvJ20Ij1",
+            "breakMinutes": 15,
+            "assignedProjectId": "4JxJtktrLWLtugt6eDJT",
+            "description": "Ki kell fizetni az orabert!\n\nItt egy sor!",
+            "endTime": "2026-03-11 15:00:00+00:00",
+            "createdAt": "2026-03-11 16:49:14.234000+00:00"
+        },
+        {
+            "id": "YwkPjPYjzVtOaXkfisi6",
+            "workspaceId": "S1U18R9lgN79Om9ubs9t",
+            "date": "2026-03-10 23:00:00+00:00",
+            "startTime": "2026-03-11 07:00:00+00:00",
+            "updatedAt": "2026-03-12 16:51:56.058000+00:00",
+            "employeeId": "i4ugkbqYwDRTDtzDaRGjjPF2XBc2",
+            "breakMinutes": 0,
+            "assignedProjectId": "4JxJtktrLWLtugt6eDJT",
+            "description": "",
+            "endTime": "2026-03-11 11:00:00+00:00",
+            "createdAt": "2026-03-11 16:49:14.234000+00:00"
+        }
+    ],
+    "material": [
+        {
+            "id": "0ahof4fAAUaZgZJkijuT",
+            "createdAt": "2026-02-25 19:12:38.361000+00:00",
+            "teamId": "INZ9PH",
+            "projectId": "4JxJtktrLWLtugt6eDJT",
+            "quantity": 18.0,
+            "priceMode": "unitPrice",
+            "unitPrice": 3000.0,
+            "unit": "m²",
+            "name": "Murva",
+            "price": 54000.0,
+            "date": "2026-01-11 23:00:00+00:00"
+        },
+        {
+            "id": "aLruoBRu2GTqEbsGI1lf",
+            "name": "Beton",
+            "teamId": "INZ9PH",
+            "projectId": "4JxJtktrLWLtugt6eDJT",
+            "createdAt": "2026-01-15 17:19:37.120000+00:00",
+            "priceMode": "customPrice",
+            "unit": "kg",
+            "quantity": 25.0,
+            "price": 2000.0,
+            "date": "2026-01-06 23:00:00+00:00"
+        },
+        {
+            "id": "kWXFyq6h6BOx2Jytnr9r",
+            "name": "Murva",
+            "teamId": "INZ9PH",
+            "projectId": "4JxJtktrLWLtugt6eDJT",
+            "createdAt": "2026-01-15 17:17:10.092000+00:00",
+            "priceMode": "unitPrice",
+            "unitPrice": 8800.0,
+            "unit": "m³",
+            "quantity": 3.0,
+            "price": 26400.0,
+            "date": "2026-01-14 23:00:00+00:00"
+        },
+        {
+            "id": "tAVcNaT3eNV62NVNTkVr",
+            "name": "Murva",
+            "teamId": "INZ9PH",
+            "projectId": "4JxJtktrLWLtugt6eDJT",
+            "createdAt": "2026-01-15 18:14:50.380000+00:00",
+            "priceMode": "unitPrice",
+            "unitPrice": 448088.0,
+            "unit": "kg",
+            "quantity": 123.0,
+            "price": 55114824.0,
+            "date": "2026-01-10 23:00:00+00:00"
+        }
+    ],
+    "users": [
+        {
+            "id": "45V4l6CII5acuksMXScyDvJ20Ij1",
+            "workspaceRef": "<google.cloud.firestore_v1.document.DocumentReference object at 0x10a39e510>",
+            "teamId": "INZ9PH",
+            "role": 1,
+            "salary": 3500.0,
+            "name": "Zeck Krisztián",
+            "email": "okoskert.tata@gmail.com",
+            "createdAt": "2025-12-29 08:37:44.103000+00:00"
+        },
+        {
+            "id": "DWjcBm4bSxOYroZ3w3mo",
+            "role": 2,
+            "teamId": "INZ9PH",
+            "salary": 0,
+            "name": "Széchenyi István",
+            "email": "szechenyi@gmail.com",
+            "createdAt": "2026-03-13 18:15:07.663000+00:00"
+        },
+        {
+            "id": "FmJLr7UZCdjnDVq2Bx5u",
+            "role": 1,
+            "teamId": "INZ9PH",
+            "salary": 0,
+            "name": "Miklós",
+            "email": "migyuroki@gmail.com",
+            "createdAt": "2026-03-13 20:51:45.465000+00:00"
+        },
+        {
+            "id": "GSLo3SJmjFhr9xgpOe64su8w71F3",
+            "workspaceRef": "<google.cloud.firestore_v1.document.DocumentReference object at 0x10a3aad50>",
+            "teamId": "INZ9PH",
+            "role": 1,
+            "salary": 1000,
+            "name": "Kossuth Lajos",
+            "email": "kossuth@gmail.com",
+            "createdAt": "2025-12-24 08:49:13.151000+00:00"
+        },
+        {
+            "id": "dXPxuAWLvHh3qPvXE1OtqCaqDCA3",
+            "workspaceRef": "<google.cloud.firestore_v1.document.DocumentReference object at 0x10a3b23d0>",
+            "teamId": "INZ9PH",
+            "role": 1,
+            "salary": 30000,
+            "name": "csaba",
+            "email": "csabee.farkas@gmail.con",
+            "createdAt": "2025-12-25 10:44:28.046000+00:00"
+        },
+        {
+            "id": "i4ugkbqYwDRTDtzDaRGjjPF2XBc2",
+            "workspaceRef": "workspaces/S1U18R9lgN79Om9ubs9t",
+            "teamId": "INZ9PH",
+            "role": 1,
+            "name": "Lévai Gábor",
+            "email": "levai.gabor28@gmail.com",
+            "createdAt": "2026-03-08 18:00:36.975000+00:00"
+        },
+        {
+            "id": "jHOByUE2ryOjLq5sAuUUojcS6bY2",
+            "workspaceRef": "<google.cloud.firestore_v1.document.DocumentReference object at 0x10a3a1010>",
+            "teamId": "INZ9PH",
+            "role": 1,
+            "salary": 45000,
+            "name": "Butor M. Kadosa",
+            "email": "mrbmk13@gmail.com",
+            "createdAt": "2025-12-24 10:08:15.949000+00:00"
+        },
+        {
+            "id": "pmWgl7rNNoauUnigZtnsfWGiWdE3",
+            "workspaceRef": "<google.cloud.firestore_v1.document.DocumentReference object at 0x10a3a0830>",
+            "teamId": "INZ9PH",
+            "role": 1,
+            "name": "Lévai Levente Gábor",
+            "email": "levai.levente.gabor@gmail.com",
+            "createdAt": "2026-01-26 10:01:48.388000+00:00"
+        },
+        {
+            "id": "ulSkU4O7ZAf3y6syT3v0rn3wQDv2",
+            "workspaceRef": "<google.cloud.firestore_v1.document.DocumentReference object at 0x10a3a1190>",
+            "teamId": "INZ9PH",
+            "role": 2,
+            "name": "Kis Ambrus",
+            "email": "kisambrus@gmail.com",
+            "createdAt": "2026-03-08 18:06:44.731000+00:00"
+        }
+    ],
+    "machines": [
+        {
+            "id": "ZyFdLc1pPulvTI32gCpt",
+            "hours": 0.0,
+            "teamId": "INZ9PH",
+            "updatedAt": "2026-03-13 21:18:10.224000+00:00",
+            "maintenances": [
+                {
+                    "interval": 0.0,
+                    "lastAt": 0.0,
+                    "name": "TMK karbantartás"
+                }
+            ],
+            "name": "John Deer",
+            "createdAt": "2026-03-13 21:18:10.224000+00:00"
+        },
+        {
+            "id": "eKu2Vu6aKeR68yBBceSA",
+            "hours": 125.0,
+            "teamId": "INZ9PH",
+            "maintenances": [
+                {
+                    "interval": 15.0,
+                    "lastAt": 113.0,
+                    "name": "TMK karbantartás"
+                }
+            ],
+            "updatedAt": "2026-03-15 08:59:18.958000+00:00",
+            "name": "Avant36",
+            "createdAt": "2026-02-24 08:08:43.895000+00:00"
+        }
+    ],
+    "machineWorklog": [
+        {
+            "id": "5c5OvYjZzT3t4ewv1anV",
+            "newHours": 253.0,
+            "teamId": "INZ9PH",
+            "createdAt": "2026-01-23 16:00:39.075000+00:00",
+            "assignedProjectId": "4JxJtktrLWLtugt6eDJT",
+            "previousHours": 250.0,
+            "machineId": "wc8cXfBT7VzZ6lOWSp1k",
+            "date": "2026-01-23 16:00:26.063948+00:00"
+        },
+        {
+            "id": "U4uaHYPetZvTpAT2UqWZ",
+            "newHours": 125.0,
+            "teamId": "INZ9PH",
+            "createdAt": "2026-03-15 08:59:18.889000+00:00",
+            "assignedProjectId": "4JxJtktrLWLtugt6eDJT",
+            "previousHours": 123.0,
+            "machineId": "eKu2Vu6aKeR68yBBceSA",
+            "date": "2026-03-15 08:57:09.479209+00:00"
+        },
+        {
+            "id": "X4COjWNQKJMwQ1E88vjl",
+            "newHours": 18.0,
+            "teamId": "INZ9PH",
+            "createdAt": "2026-02-10 18:01:51.914000+00:00",
+            "assignedProjectId": "4JxJtktrLWLtugt6eDJT",
+            "previousHours": 15.0,
+            "machineId": "llqqhPSe6YkWgonnbRz9",
+            "date": "2026-02-10 23:00:00+00:00"
+        },
+        {
+            "id": "e5GMUASCM68uxbkyuMfh",
+            "newHours": 157.0,
+            "teamId": "INZ9PH",
+            "createdAt": "2026-01-21 14:36:32.594000+00:00",
+            "assignedProjectId": "4JxJtktrLWLtugt6eDJT",
+            "previousHours": 156.0,
+            "machineId": "cB8byyF0XHfnG0zlyWM0",
+            "date": "2026-01-21 14:36:15.168266+00:00"
+        },
+        {
+            "id": "ufPP1lJgDJpO42BAiUSO",
+            "newHours": 253.0,
+            "teamId": "INZ9PH",
+            "createdAt": "2026-01-23 17:23:03.186000+00:00",
+            "assignedProjectId": "4JxJtktrLWLtugt6eDJT",
+            "previousHours": 250,
+            "machineId": "wc8cXfBT7VzZ6lOWSp1k",
+            "date": "2026-01-23 17:22:54.865716+00:00"
+        }
+    ]
+}
