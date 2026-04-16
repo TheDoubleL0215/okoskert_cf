@@ -1,16 +1,40 @@
-from datetime import datetime
+from datetime import date, datetime, timezone
 from io import BytesIO
+from zoneinfo import ZoneInfo
+
 import pandas as pd
 from openpyxl.styles import Font
 
+_TZ_HU = ZoneInfo("Europe/Budapest")
 
-def _date_str(val):
-    if val is None:
+
+def _calendar_date_hu(val):
+    """Naptári dátum magyar formában; időzóna-észleléssel (UTC → Europe/Budapest)."""
+    if val is None or (isinstance(val, float) and pd.isna(val)):
         return ""
+    if isinstance(val, pd.Timestamp):
+        val = val.to_pydatetime()
+    if isinstance(val, datetime):
+        dt = val
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=timezone.utc)
+        return dt.astimezone(_TZ_HU).strftime("%Y.%m.%d.")
+    if isinstance(val, date):
+        return val.strftime("%Y.%m.%d.")
+    s = str(val).strip()
+    if len(s) >= 10 and s[4] == "-" and s[7] == "-":
+        if len(s) == 10:
+            return s.replace("-", ".") + "."
+        try:
+            dt = datetime.fromisoformat(s.replace("Z", "+00:00"))
+        except ValueError:
+            return s[:10].replace("-", ".") + "."
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=timezone.utc)
+        return dt.astimezone(_TZ_HU).strftime("%Y.%m.%d.")
     if hasattr(val, "isoformat"):
-        return val.isoformat()[:10].replace("-", ".")
-    s = str(val)
-    return s[:10].replace("-", ".") if len(s) >= 10 else s
+        return _calendar_date_hu(val.isoformat())
+    return s[:10].replace("-", ".") + "." if len(s) >= 10 else s
 
 
 def format_project_status(status):
@@ -26,6 +50,13 @@ def get_hours(start_str, end_str, break_min):
         return round((delta.total_seconds() / 3600) - (break_min / 60), 2)
     except Exception:
         return 0
+
+
+def _to_float_or_none(value):
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return None
 
 
 def format_project_sheet(ws):
@@ -105,7 +136,7 @@ def build_export_xlsx(data: dict) -> bytes:
     for m in data.get("material") or []:
         price_mode = "Egységár" if m.get("priceMode") == "unitPrice" else "Egyedi ár"
         mat_rows.append([
-            _date_str(m.get("date")),
+            _calendar_date_hu(m.get("date")),
             m.get("name", ""),
             m.get("quantity", ""),
             m.get("unit", ""),
@@ -117,6 +148,8 @@ def build_export_xlsx(data: dict) -> bytes:
 
     roles_map = {1: "Admin", 2: "Építésvezető", 3: "Kertész"}
     users_dict = {u["id"]: u for u in data.get("users") or []}
+    wage_type_data = data.get("wageType") or {}
+    wage_by_workspace = wage_type_data.get("byWorkspace") or {}
     work_rows, total_work_hours, total_work_money = [], 0, 0
 
     for log in data.get("worklog") or []:
@@ -126,9 +159,16 @@ def build_export_xlsx(data: dict) -> bytes:
             log.get("endTime"),
             log.get("breakMinutes") or 0,
         )
-        salary = float(user.get("salary") or 0)
+        workspace_id = log.get("workspaceId")
+        wage_cfg = wage_by_workspace.get(workspace_id) or {}
+        custom_by_uid = wage_cfg.get("customByUid") or {}
+        salary = _to_float_or_none(custom_by_uid.get(log.get("employeeId")))
+        if salary is None:
+            salary = _to_float_or_none(wage_cfg.get("defaultValue"))
+        if salary is None:
+            salary = float(user.get("salary") or 0)
         work_rows.append([
-            _date_str(log.get("date")),
+            _calendar_date_hu(log.get("date")),
             user.get("name", "Ismeretlen"),
             roles_map.get(user.get("role"), ""),
             "",
@@ -152,7 +192,7 @@ def build_export_xlsx(data: dict) -> bytes:
         new_h = float(mlog.get("newHours") or 0)
         daily_usage = new_h - prev
         machine_rows.append([
-            _date_str(mlog.get("date")),
+            _calendar_date_hu(mlog.get("date")),
             m_name,
             prev,
             new_h,
@@ -173,18 +213,19 @@ def build_export_xlsx(data: dict) -> bytes:
         columns=["Dátum", "Gép Neve", "Kezdő Óraállás", "Záró Óraállás", "Napi Üzemóra"],
     )
 
+    _date_fmt = "%Y.%m.%d."
     if not df_mat.empty:
-        df_mat["Dátum"] = pd.to_datetime(df_mat["Dátum"], errors="coerce")
+        df_mat["Dátum"] = pd.to_datetime(df_mat["Dátum"], format=_date_fmt, errors="coerce")
         df_mat = df_mat.sort_values(by="Dátum")
-        df_mat["Dátum"] = df_mat["Dátum"].dt.strftime("%Y.%m.%d.")
+        df_mat["Dátum"] = df_mat["Dátum"].dt.strftime(_date_fmt)
     if not df_work.empty:
-        df_work["Dátum"] = pd.to_datetime(df_work["Dátum"], errors="coerce")
+        df_work["Dátum"] = pd.to_datetime(df_work["Dátum"], format=_date_fmt, errors="coerce")
         df_work = df_work.sort_values(by="Dátum")
-        df_work["Dátum"] = df_work["Dátum"].dt.strftime("%Y.%m.%d.")
+        df_work["Dátum"] = df_work["Dátum"].dt.strftime(_date_fmt)
     if not df_mach.empty:
-        df_mach["Dátum"] = pd.to_datetime(df_mach["Dátum"], errors="coerce")
+        df_mach["Dátum"] = pd.to_datetime(df_mach["Dátum"], format=_date_fmt, errors="coerce")
         df_mach = df_mach.sort_values(by="Dátum")
-        df_mach["Dátum"] = df_mach["Dátum"].dt.strftime("%Y.%m.%d.")
+        df_mach["Dátum"] = df_mach["Dátum"].dt.strftime(_date_fmt)
 
     buffer = BytesIO()
     with pd.ExcelWriter(buffer, engine="openpyxl") as writer:
